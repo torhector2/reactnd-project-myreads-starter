@@ -15,7 +15,7 @@ function ListBooks(props) {
               </div>
             </div>
             <div className="open-search">
-              <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+              <button onClick={() => props.searchFor() }>Add a book</button>
             </div>
         </div>
     );

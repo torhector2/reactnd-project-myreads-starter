@@ -5,7 +5,7 @@ function BookGrid(props) {
     const books = props.books || [];
     return(
         <ol className="books-grid">
-            { books.map((book) => (<li key={book.id}><Book book={book} /></li>)) }
+            { books.map((book) => (<li key={book.id}><Book book={book} refresh={props.refresh}/></li>)) }
         </ol>
     );
 }

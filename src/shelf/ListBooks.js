@@ -34,9 +34,9 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <BookShelf titleShelf='Currently Reading' books={this.state.shelfs.get("currentlyReading")} />
-            <BookShelf titleShelf='Want to Read' books={this.state.shelfs.get("wantToRead")} />
-            <BookShelf titleShelf='Read' books={this.state.shelfs.get("read")} />
+            <BookShelf titleShelf='Currently Reading' books={this.state.shelfs.get("currentlyReading")} refresh={() => this.requestAllBooks()} />
+            <BookShelf titleShelf='Want to Read' books={this.state.shelfs.get("wantToRead")} refresh={() => this.requestAllBooks()} />
+            <BookShelf titleShelf='Read' books={this.state.shelfs.get("read")} refresh={() => this.requestAllBooks()} />
           </div>
         </div>
         <div className="open-search">

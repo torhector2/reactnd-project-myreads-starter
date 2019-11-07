@@ -8,7 +8,7 @@ class SearchBooks extends Component {
   }
   search = async (term) => {
     const query = term.trim();
-    if (query.length == 0) {
+    if (query.length === 0) {
       this.setState({books: []});
       return;
     }

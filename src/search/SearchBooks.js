@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BookGrid from '../BookGrid.js';
-import * as BooksAPI from '../BooksAPI.js'
+import * as BooksAPI from '../BooksAPI.js';
 
 class SearchBooks extends Component {
   state = {

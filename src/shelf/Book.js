@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Book extends Component {
     render() {
         const { imageLinks, title, authors = []} = this.props.book;
-        const { thumbnail } =  imageLinks;
+        const thumbnail =  (imageLinks && imageLinks.thumbnail) || '';
 
         return(
             <div className="book">

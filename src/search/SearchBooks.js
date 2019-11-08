@@ -7,6 +7,7 @@ class SearchBooks extends Component {
   state = {
     books: []
   }
+
   search = async (term) => {
     const query = term.trim();
     if (query.length === 0) {
@@ -15,8 +16,19 @@ class SearchBooks extends Component {
     }
 
     let result = await BooksAPI.search(query);
+    if (result.error) {
+      this.setState({books: []})
+    } else {
+      this.setState({books: result.map((book) => this.updateShelf(book))})
+    }
     this.setState({books: result.error ? [] : result})
   }
+
+  updateShelf = (book) => {
+    const shelf = this.props.shelfByBookId.get(book.id) || 'none';
+    return {...book, shelf: shelf}
+  }
+
   render() {  
     return(
         <div className="search-books">
@@ -36,7 +48,7 @@ class SearchBooks extends Component {
               </div>
             </div>
             <div className="search-books-results">
-              <BookGrid books={this.state.books} refresh={() => {}}/>
+              <BookGrid books={this.state.books} refresh={this.props.refresh}/>
             </div>
         </div>
     );

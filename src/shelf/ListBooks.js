@@ -4,27 +4,6 @@ import * as BooksAPI from "../BooksAPI.js";
 import { Link } from 'react-router-dom';
 
 class ListBooks extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {shelfs: new Map()}
-  }
-
-  componentDidMount() {
-    this.requestAllBooks();
-  }
-
-  requestAllBooks = async () => {
-    let result = await BooksAPI.getAll();
-    let shelfMap = result.reduce((mapAccumulator, obj) => {
-      let shelf = mapAccumulator.get(obj.shelf) || [];
-      mapAccumulator.set(obj.shelf, shelf.concat(obj));
-
-      return mapAccumulator;
-    }, new Map());
-
-    this.setState({ shelfs: shelfMap });
-  };
-
   render() {
     return (
       <div className="list-books">
@@ -33,9 +12,9 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <BookShelf titleShelf='Currently Reading' books={this.state.shelfs.get("currentlyReading")} refresh={() => this.requestAllBooks()} />
-            <BookShelf titleShelf='Want to Read' books={this.state.shelfs.get("wantToRead")} refresh={() => this.requestAllBooks()} />
-            <BookShelf titleShelf='Read' books={this.state.shelfs.get("read")} refresh={() => this.requestAllBooks()} />
+            <BookShelf titleShelf='Currently Reading' books={this.props.shelfs.get("currentlyReading")} refresh={this.props.refresh} />
+            <BookShelf titleShelf='Want to Read' books={this.props.shelfs.get("wantToRead")} refresh={this.props.refresh} />
+            <BookShelf titleShelf='Read' books={this.props.shelfs.get("read")} refresh={this.props.refresh} />
           </div>
         </div>
         <div className="open-search">

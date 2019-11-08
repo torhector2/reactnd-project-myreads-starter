@@ -3,9 +3,6 @@ import * as BooksAPI from "../BooksAPI.js";
 
 class Book extends Component {
     async changeShelf(event) {
-        if (event.target.value === 'none') {
-            return;
-        }
         if (!this.props.book) {
             return;
         }
@@ -16,7 +13,6 @@ class Book extends Component {
     render() {
         const { shelf, imageLinks, title, authors = []} = this.props.book;
         const thumbnail =  (imageLinks && imageLinks.thumbnail) || '';
-
         return(
             <div className="book">
                 <div className="book-top">
@@ -39,5 +35,3 @@ class Book extends Component {
 }
 
 export default Book;
-
-// we need: a funtion to change its shelf 

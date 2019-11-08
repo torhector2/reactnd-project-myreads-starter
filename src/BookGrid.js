@@ -11,5 +11,3 @@ function BookGrid(props) {
 }
 
 export default BookGrid;
-
-//we need: a function to change its shelf to pass it to the Book 

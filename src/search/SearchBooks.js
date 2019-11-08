@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BookGrid from '../BookGrid.js';
 import * as BooksAPI from '../BooksAPI.js';
+import { Link } from 'react-router-dom';
 
 class SearchBooks extends Component {
   state = {
@@ -20,7 +21,7 @@ class SearchBooks extends Component {
     return(
         <div className="search-books">
             <div className="search-books-bar">
-              <button className="close-search" onClick={() => this.props.back()}>Close</button>
+              <Link exact to='/' className="close-search">Close</Link>
               <div className="search-books-input-wrapper">
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.

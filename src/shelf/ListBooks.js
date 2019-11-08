@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BookShelf from "./BookShelf.js";
 import * as BooksAPI from "../BooksAPI.js";
+import { Link } from 'react-router-dom';
 
 class ListBooks extends Component {
   constructor(props) {
@@ -22,8 +23,6 @@ class ListBooks extends Component {
     }, new Map());
 
     this.setState({ shelfs: shelfMap });
-    console.log(result);
-    console.log(shelfMap);
   };
 
   render() {
@@ -40,9 +39,7 @@ class ListBooks extends Component {
           </div>
         </div>
         <div className="open-search">
-          <button onClick={() => this.props.navigateToSearch()}>
-            Add a book
-          </button>
+          <Link to='/search' >Add a Book</Link>
         </div>
       </div>
     );

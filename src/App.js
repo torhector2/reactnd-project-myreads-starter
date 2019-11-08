@@ -9,12 +9,8 @@ class BooksApp extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <Route exact path='/' render={({ history }) => (
-          <ListBooks navigateToSearch={ () => history.push('/search') } />
-        ) } />
-        <Route path='/search' render={({ history }) => (
-          <SearchBooks back={ () => history.push('/') } />
-        ) } />
+        <Route exact path='/' component={ListBooks} />
+        <Route path='/search' component={SearchBooks} />
       </BrowserRouter>
     )
   }

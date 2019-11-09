@@ -48,6 +48,10 @@ class SearchBooks extends Component {
               </div>
             </div>
             <div className="search-books-results">
+              { this.state.books.length === 0 && (
+                <p>No results found for that query</p>
+              )
+              }
               <BookGrid books={this.state.books} refresh={this.props.refresh}/>
             </div>
         </div>

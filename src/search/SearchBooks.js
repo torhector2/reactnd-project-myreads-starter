@@ -5,23 +5,24 @@ import { Link } from 'react-router-dom';
 
 class SearchBooks extends Component {
   state = {
-    books: []
+    books: [],
+    query: ''
   }
 
   search = async (term) => {
     const query = term.trim();
     if (query.length === 0) {
-      this.setState({books: []});
+      this.setState({books: [], query: ''});
       return;
     }
 
     let result = await BooksAPI.search(query);
+    console.log(term)
     if (result.error) {
-      this.setState({books: []})
+      this.setState({books: [], query: term.trim()})
     } else {
-      this.setState({books: result.map((book) => this.updateShelf(book))})
+      this.setState({books: result.map((book) => this.updateShelf(book)), query: term.trim()})
     }
-    this.setState({books: result.error ? [] : result})
   }
 
   updateShelf = (book) => {
@@ -30,6 +31,8 @@ class SearchBooks extends Component {
   }
 
   render() {  
+    const {query, books} = this.state;
+    const isANoResultsQuery = query.trim().length > 0 && books.length === 0;
     return(
         <div className="search-books">
             <div className="search-books-bar">
@@ -48,10 +51,7 @@ class SearchBooks extends Component {
               </div>
             </div>
             <div className="search-books-results">
-              { this.state.books.length === 0 && (
-                <p>No results found for that query</p>
-              )
-              }
+              { isANoResultsQuery && ( <p>No results found for that query</p>) }
               <BookGrid books={this.state.books} refresh={this.props.refresh}/>
             </div>
         </div>

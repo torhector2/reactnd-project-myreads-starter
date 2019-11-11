@@ -16,12 +16,16 @@ class SearchBooks extends Component {
       return;
     }
 
+    this.setState({query: query}) //we store the last query the user performs
     let result = await BooksAPI.search(query);
-    console.log(term)
+    if (this.state.query !== query) {
+      return; //we avoid that previous requests but with slow responses overwrite results
+    }
+
     if (result.error) {
-      this.setState({books: [], query: term.trim()})
+      this.setState({books: [], query: term.trim()});
     } else {
-      this.setState({books: result.map((book) => this.updateShelf(book)), query: term.trim()})
+      this.setState({books: result.map((book) => this.updateShelf(book)), query: term.trim()});
     }
   }
 

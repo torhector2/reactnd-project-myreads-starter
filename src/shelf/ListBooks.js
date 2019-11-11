@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 
 class ListBooks extends Component {
   render() {
+    const shelves = [
+      ['Currently Reading', 'currentlyReading'],
+      ['Want to Read', 'wantToRead'],
+      ['Read', 'read']
+    ];
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -11,9 +16,9 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <BookShelf titleShelf='Currently Reading' books={this.props.shelfs.get("currentlyReading")} refresh={this.props.refresh} />
-            <BookShelf titleShelf='Want to Read' books={this.props.shelfs.get("wantToRead")} refresh={this.props.refresh} />
-            <BookShelf titleShelf='Read' books={this.props.shelfs.get("read")} refresh={this.props.refresh} />
+            {shelves.map((shelf) => (
+              <BookShelf key={shelf[1]} titleShelf={shelf[0]}  books={this.props.shelfs.get(shelf[1])} refresh={this.props.refresh} />)
+            )}
           </div>
         </div>
         <div className="open-search">
